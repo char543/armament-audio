@@ -15,7 +15,7 @@ export default function ArtistsSection() {
     {
       name: 'Krisis UK',
       genre: 'Techno, K-Pop',
-      image: '/placeholder-31iqb.png',
+      image: '/ARMAMENT_2.png',
       description: 'Retro-futuristic beats with a modern twist.',
       releases: 5,
       streams: '4.7M',
@@ -44,42 +44,48 @@ export default function ArtistsSection() {
         </div>
 
         <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
-          {artists.map((artist, index) => (
-            <Card
-              key={index}
-              className='group hover:scale-105 transition-all duration-300 bg-card/50 backdrop-blur-sm border-border/50 hover:border-accent/50'
-            >
-              <CardContent className='p-0'>
-                <div className='relative overflow-hidden rounded-t-lg'>
-                  <img
-                    src={artist.image || '/placeholder.svg'}
-                    alt={artist.name}
-                    className='w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500'
-                  />
-                  <div className='absolute inset-0 bg-linear-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300' />
-                  <Badge className='absolute top-4 right-4 bg-accent text-accent-foreground'>
-                    {artist.genre}
-                  </Badge>
-                </div>
-                <div className='p-6'>
-                  <h3 className='text-2xl font-headline font-bold mb-2 group-hover:text-accent transition-colors'>
-                    {artist.name}
-                  </h3>
-                  <p className='text-muted-foreground mb-4'>
-                    {artist.description}
-                  </p>
-                  <div className='flex justify-between items-center text-sm'>
-                    <span className='text-primary font-semibold'>
-                      {artist.releases} Releases
-                    </span>
-                    <span className='text-accent font-semibold'>
-                      {artist.streams} Streams
-                    </span>
+          {artists.map((artist, index) => {
+            const objectFitClass =
+              artist.image === '/ARMAMENT_2.png'
+                ? 'object-contain'
+                : 'object-cover'
+            return (
+              <Card
+                key={index}
+                className='group hover:scale-105 transition-all duration-300 bg-card/50 backdrop-blur-sm border-border/50 hover:border-accent/50'
+              >
+                <CardContent className='p-0'>
+                  <div className='relative overflow-hidden rounded-t-lg'>
+                    <img
+                      src={artist.image || '/placeholder.svg'}
+                      alt={artist.name}
+                      className={`w-full h-64 ${objectFitClass} group-hover:scale-110 transition-transform duration-500`}
+                    />
+                    <div className='absolute inset-0 bg-linear-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300' />
+                    <Badge className='absolute top-4 right-4 bg-accent text-accent-foreground'>
+                      {artist.genre}
+                    </Badge>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+                  <div className='p-6'>
+                    <h3 className='text-2xl font-headline font-bold mb-2 group-hover:text-accent transition-colors'>
+                      {artist.name}
+                    </h3>
+                    <p className='text-muted-foreground mb-4'>
+                      {artist.description}
+                    </p>
+                    <div className='flex justify-between items-center text-sm'>
+                      <span className='text-primary font-semibold'>
+                        {artist.releases} Releases
+                      </span>
+                      <span className='text-accent font-semibold'>
+                        {artist.streams} Streams
+                      </span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            )
+          })}
         </div>
       </div>
     </section>

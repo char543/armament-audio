@@ -14,7 +14,7 @@ export function ReleasesSection() {
       artist: 'Krisis UK',
       year: '2025',
       genre: 'Pigeoncore',
-      image: '/midnight-echoes-album-cover.png',
+      image: '/abstract-music-waves-dark.png',
       soundcloudUrl: 'https://soundcloud.com/user-541890138/dinosaur',
     },
     {
@@ -52,7 +52,7 @@ export function ReleasesSection() {
       artist: 'DiZzKiD',
       year: '2024',
       genre: 'Synthwave Tribal Trap',
-      image: '/midnight-echoes-album-cover.png',
+      image: '/digital-dreams-ambient-album.png',
       soundcloudUrl:
         'https://soundcloud.com/dizzkiduk/ace-hood-top-dizzkid-bootleg',
     },
