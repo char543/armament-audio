@@ -7,7 +7,7 @@ export function HeroSection() {
       id='home'
       className='relative min-h-screen flex items-center justify-center overflow-hidden'
     >
-      <div className='absolute inset-0 bg-background'>
+      <div className='absolute inset-0'>
         {/* Animated sound wave background */}
         <div className='absolute inset-0 flex items-center justify-center opacity-20'>
           <div className='flex space-x-2'>
@@ -25,25 +25,30 @@ export function HeroSection() {
         </div>
 
         {/* Vinyl record visual */}
-        <div className='absolute top-20 right-20 w-32 h-32 opacity-30'>
-          <div className='w-full h-full bg-gradient-to-br from-primary to-accent rounded-full relative'>
+        {/* <div className='absolute top-20 right-20 w-32 h-32 opacity-30'>
+          <div className='w-full h-full bg-linear-to-br from-primary to-accent rounded-full relative'>
             <div className='absolute inset-4 bg-background rounded-full'>
               <div className='absolute inset-6 bg-primary rounded-full'></div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* Content */}
       <div className='relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto'>
         <div className='mb-8'>
-          <Music className='h-16 w-16 text-accent mx-auto mb-6 pulse-glow' />
+          {/* <Music className='h-16 w-16 text-accent mx-auto mb-6 pulse-glow' /> */}
+          <img
+            src='/ARMAMENT_2.png'
+            alt='Armament Audio Logo'
+            className=' h-64 w-64 text-accent mx-auto mb-6 pulse-glow rounded-full'
+          />
         </div>
 
         <h1 className='font-headline font-black text-4xl sm:text-6xl lg:text-8xl text-foreground mb-6 leading-tight'>
-          Recreational
-          <span className='block text-primary bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent'>
-            Records
+          Armament
+          <span className='block bg-linear-to-r from-primary to-accent bg-clip-text text-transparent'>
+            Audio
           </span>
         </h1>
 
