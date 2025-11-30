@@ -28,7 +28,7 @@ export default function ArtistPage({ params }: ArtistPageProps) {
   }
 
   return (
-    <main className='relative min-h-screen bg-background'>
+    <main className='relative z-10 min-h-screen'>
       <Navigation />
 
       {/* Hero Section */}

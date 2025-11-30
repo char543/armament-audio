@@ -6,27 +6,18 @@ import ArtistsSection from '@/components/artists-section'
 import { ContactSection } from '@/components/contact-section'
 import { Footer } from '@/components/footer'
 import FloatingPlayer from '@/components/floating-player'
-import SmokeBackground from '@/components/react-smoke'
 
 export default function Home() {
   return (
-    <main className='relative min-h-screen bg-background overflow-hidden'>
-      {/* Smoke background – full screen, behind everything */}
-      <div className='absolute inset-0 z-0 pointer-events-none'>
-        <SmokeBackground />
-      </div>
-
-      {/* All your page content – sits on top of the smoke */}
-      <div className='relative z-10'>
-        <Navigation />
-        <HeroSection />
-        <AboutSection />
-        <ArtistsSection />
-        <ReleasesSection />
-        <ContactSection />
-        <Footer />
-        <FloatingPlayer />
-      </div>
+    <main className='relative z-10 min-h-screen'>
+      <Navigation />
+      <HeroSection />
+      <AboutSection />
+      <ArtistsSection />
+      <ReleasesSection />
+      <ContactSection />
+      <Footer />
+      <FloatingPlayer />
     </main>
   )
 }
