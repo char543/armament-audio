@@ -43,14 +43,14 @@ export default function ArtistsSection() {
                         {artist.genre}
                       </Badge>
                     </div>
-                    <div className='p-6 flex flex-col flex-1'>
-                      <h3 className='text-2xl font-headline font-bold mb-2 group-hover:text-accent transition-colors'>
+                    <div className='p-8 flex flex-col flex-1'>
+                      <h3 className='text-2xl font-headline font-bold mb-3 group-hover:text-accent transition-colors'>
                         {artist.name}
                       </h3>
-                      <p className='text-muted-foreground mb-4 flex-1'>
+                      <p className='text-muted-foreground mb-6 flex-1 leading-relaxed'>
                         {artist.description}
                       </p>
-                      <div className='flex justify-between items-center text-sm mt-auto'>
+                      <div className='flex justify-between items-center text-sm mt-auto pt-4 border-t border-border/50'>
                         <span className='text-primary font-semibold'>
                           {artist.releases} Releases
                         </span>
