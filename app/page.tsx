@@ -6,17 +6,17 @@ import ArtistsSection from '@/components/artists-section'
 import { ContactSection } from '@/components/contact-section'
 import { Footer } from '@/components/footer'
 import FloatingPlayer from '@/components/floating-player'
-import ParticlesBackground from '@/components/particles-background'
+import SmokeBackground from '@/components/react-smoke'
 
 export default function Home() {
   return (
     <main className='relative min-h-screen bg-background overflow-hidden'>
-      {/* Particles background – full screen, behind everything */}
+      {/* Smoke background – full screen, behind everything */}
       <div className='absolute inset-0 z-0 pointer-events-none'>
-        <ParticlesBackground />
+        <SmokeBackground />
       </div>
 
-      {/* All your page content – sits on top of the particles */}
+      {/* All your page content – sits on top of the smoke */}
       <div className='relative z-10'>
         <Navigation />
         <HeroSection />

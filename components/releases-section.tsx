@@ -4,68 +4,11 @@ import { Card2, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Play, ExternalLink } from 'lucide-react'
 import { usePlayer, type Track } from '@/contexts/player-context'
+import { getAllReleases } from '@/data/releases'
 
 export function ReleasesSection() {
   const { playTrack, setQueue } = usePlayer()
-  const releases = [
-    {
-      id: '1',
-      title: 'Dinosaur',
-      artist: 'Krisis UK',
-      year: '2025',
-      genre: 'Pigeoncore',
-      image: '/abstract-music-waves-dark.png',
-      soundcloudUrl: 'https://soundcloud.com/user-541890138/dinosaur',
-    },
-    {
-      id: '2',
-      title: 'Acoustic Sessions Vol. 3',
-      artist: 'DiZzKiD',
-      year: '2023',
-      genre: 'Folk/Acoustic',
-      image: '/acoustic-folk-album.png',
-      soundcloudUrl:
-        'https://soundcloud.com/dizzkiduk/ace-hood-top-dizzkid-bootleg',
-    },
-    {
-      id: '3',
-      title: 'Vertigo',
-      artist: 'Krisis UK',
-      year: '2025',
-      genre: 'Pokemon Rap/Ambient VaperWave',
-      image: '/midnight-echoes-album-cover.png',
-      soundcloudUrl:
-        'https://soundcloud.com/user-541890138/krisisuk-vertigo-free-download',
-    },
-    {
-      id: '4',
-      title: 'Raw & Unfiltered',
-      artist: 'insertNameHere',
-      year: '2023',
-      genre: 'Rock/Alternative',
-      image: '/raw-rock-album-cover.png',
-      soundcloudUrl: 'https://soundcloud.com/your-track-url-5',
-    },
-    {
-      id: '5',
-      title: 'Neon Dreams',
-      artist: 'DiZzKiD',
-      year: '2024',
-      genre: 'Synthwave Tribal Trap',
-      image: '/digital-dreams-ambient-album.png',
-      soundcloudUrl:
-        'https://soundcloud.com/dizzkiduk/ace-hood-top-dizzkid-bootleg',
-    },
-    {
-      id: '6',
-      title: 'Jazz After Dark',
-      artist: 'insertNameHere',
-      year: '2022',
-      genre: 'Jazz/Contemporary',
-      image: '/jazz-after-dark-contemporary-album-cover.png',
-      soundcloudUrl: 'https://soundcloud.com/your-track-url-6',
-    },
-  ]
+  const releases = getAllReleases()
 
   const tracks: Track[] = releases.map((release) => ({
     id: release.id,
@@ -97,10 +40,10 @@ export function ReleasesSection() {
           {releases.map((release, index) => (
             <Card2
               key={index}
-              className='bg-card border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 group'
+              className='bg-card border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 group overflow-hidden'
             >
               <CardContent className='p-0'>
-                <div className='relative overflow-hidden rounded-t-lg'>
+                <div className='relative overflow-hidden'>
                   <img
                     src={release.image || '/placeholder.svg'}
                     alt={`${release.title} by ${release.artist}`}

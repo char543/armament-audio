@@ -81,27 +81,35 @@ export function AboutSection() {
                     50+
                   </div>
                   <div className='text-sm text-muted-foreground'>
-                    Artists Signed
+                    {/* Artists Signed */}
+                    Plays On Soundcloud
                   </div>
                 </div>
                 <div>
                   <div className='text-3xl font-headline font-black text-primary mb-2'>
                     200+
                   </div>
-                  <div className='text-sm text-muted-foreground'>Releases</div>
+                  <div className='text-sm text-muted-foreground'>
+                    {/* Releases */}
+                    Tracks Uploaded
+                  </div>
                 </div>
                 <div>
                   <div className='text-3xl font-headline font-black text-primary mb-2'>
                     10M+
                   </div>
-                  <div className='text-sm text-muted-foreground'>Streams</div>
+                  <div className='text-sm text-muted-foreground'>
+                    {/* Streams */}
+                    Unfinished Projects
+                  </div>
                 </div>
                 <div>
                   <div className='text-3xl font-headline font-black text-primary mb-2'>
                     15
                   </div>
                   <div className='text-sm text-muted-foreground'>
-                    Years Active
+                    {/* Years Active */}
+                    Followers
                   </div>
                 </div>
               </div>
