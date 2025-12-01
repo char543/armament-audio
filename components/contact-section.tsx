@@ -41,7 +41,7 @@ export function ContactSection() {
       if (response.ok) {
         setSubmitStatus({
           type: 'success',
-          message: 'Message sent successfully! We\'ll get back to you soon.',
+          message: "Message sent successfully! We'll get back to you soon.",
         })
         setFormData({ name: '', email: '', subject: '', message: '' })
       } else {
@@ -196,22 +196,23 @@ export function ContactSection() {
           {/* Contact Information */}
           <div className='space-y-8'>
             <Card className='bg-card border-border'>
-              <CardContent className='p-8'>
-                <h3 className='font-headline font-bold text-xl text-card-foreground mb-8'>
+              <CardHeader className='pb-6'>
+                <CardTitle className='font-headline font-bold text-2xl text-card-foreground'>
                   Contact Information
-                </h3>
-
+                </CardTitle>
+              </CardHeader>
+              <CardContent className='pt-0'>
                 <div className='space-y-8'>
                   <div className='flex items-start gap-4'>
                     <Mail className='h-6 w-6 text-primary mt-1 shrink-0' />
                     <div className='space-y-1'>
                       <p className='font-medium text-card-foreground'>Email</p>
-                      <p className='text-muted-foreground'>
+                      <a
+                        href='mailto:info@armamentaudio.com'
+                        className='text-muted-foreground hover:text-primary transition-colors'
+                      >
                         info@armamentaudio.com
-                      </p>
-                      <p className='text-muted-foreground'>
-                        artists@armamentaudio.com
-                      </p>
+                      </a>
                     </div>
                   </div>
 
@@ -219,7 +220,12 @@ export function ContactSection() {
                     <Phone className='h-6 w-6 text-primary mt-1 shrink-0' />
                     <div className='space-y-1'>
                       <p className='font-medium text-card-foreground'>Phone</p>
-                      <p className='text-muted-foreground'>+44 7123 456 789</p>
+                      <a
+                        href='tel:+447123456789'
+                        className='text-muted-foreground hover:text-primary transition-colors'
+                      >
+                        +44 7123 456 789
+                      </a>
                     </div>
                   </div>
 
@@ -230,11 +236,11 @@ export function ContactSection() {
                         Address
                       </p>
                       <p className='text-muted-foreground'>
-                        123 Music Row
+                        The Office
                         <br />
-                        Nashville, TN 37203
+                        Birmingham, B17
                         <br />
-                        United States
+                        United Kingdom
                       </p>
                     </div>
                   </div>
@@ -243,10 +249,12 @@ export function ContactSection() {
             </Card>
 
             <Card className='bg-card border-border'>
-              <CardContent className='p-8'>
-                <h3 className='font-headline font-bold text-xl text-card-foreground mb-6'>
+              <CardHeader className='pb-6'>
+                <CardTitle className='font-headline font-bold text-2xl text-card-foreground'>
                   For Artists
-                </h3>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className='pt-0'>
                 <p className='text-muted-foreground leading-relaxed mb-6'>
                   Interested in joining our roster? We're always looking for
                   talented artists who share our passion for innovative music.

@@ -8,8 +8,9 @@ import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Card2, CardContent } from '@/components/ui/card'
-import { Play, ExternalLink, ArrowLeft } from 'lucide-react'
+import { ReleaseCard } from '@/components/release-card'
+import { ArrowLeft, ExternalLink } from 'lucide-react'
+import { usePlayer, type Track } from '@/contexts/player-context'
 import { use } from 'react'
 
 interface ArtistPageProps {
@@ -22,6 +23,16 @@ export default function ArtistPage({ params }: ArtistPageProps) {
   const { slug } = use(params)
   const artist = getArtistBySlug(slug)
   const artistReleases = getReleasesByArtist(slug)
+
+  const { setQueue, playTrack } = usePlayer()
+
+  const tracks: Track[] = artistReleases.map((r) => ({
+    id: r.id,
+    title: r.title,
+    artist: r.artist ?? artist?.name,
+    soundcloudUrl: r.soundcloudUrl,
+    image: r.image,
+  }))
 
   if (!artist) {
     notFound()
@@ -116,7 +127,7 @@ export default function ArtistPage({ params }: ArtistPageProps) {
       {/* Bio Section */}
       <section className='py-16 px-4'>
         <div className='max-w-7xl mx-auto'>
-          <div className='bg-card rounded-lg p-8 border border-border'>
+          <div className='bg-[#1a1a1a91] rounded-lg p-8 border border-border'>
             <h2 className='text-3xl font-headline font-bold mb-6'>About</h2>
             <p className='text-lg text-muted-foreground leading-relaxed'>
               {artist.bio}
@@ -132,61 +143,22 @@ export default function ArtistPage({ params }: ArtistPageProps) {
             <h2 className='text-3xl font-headline font-bold mb-8'>
               Discography
             </h2>
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8'>
-              {artistReleases.map((release) => (
-                <Card2
+            {/** Use shared ReleaseCard component and wire player */}
+            <div className='flex flex-wrap justify-start gap-8'>
+              {artistReleases.map((release, index) => (
+                <ReleaseCard
                   key={release.id}
-                  className='bg-card border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 group overflow-hidden'
-                >
-                  <CardContent className='p-0'>
-                    <div className='relative overflow-hidden'>
-                      <img
-                        src={release.image}
-                        alt={release.title}
-                        className='w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105'
-                      />
-                      <div className='absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center'>
-                        <Button
-                          size='sm'
-                          className='bg-primary hover:bg-primary/90 text-primary-foreground'
-                        >
-                          <Play className='h-4 w-4 mr-2' />
-                          Play
-                        </Button>
-                      </div>
-                    </div>
-
-                    <div className='p-6'>
-                      <h3 className='font-headline font-bold text-lg text-card-foreground mb-2'>
-                        {release.title}
-                      </h3>
-                      <p className='text-sm text-muted-foreground mb-4'>
-                        {release.year}
-                      </p>
-
-                      <div className='flex gap-2'>
-                        <Button
-                          variant='outline'
-                          size='sm'
-                          className='flex-1 border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent'
-                        >
-                          <Play className='h-4 w-4 mr-2' />
-                          Listen
-                        </Button>
-                        <Button
-                          variant='ghost'
-                          size='sm'
-                          className='text-muted-foreground hover:text-primary'
-                          onClick={() =>
-                            window.open(release.soundcloudUrl, '_blank')
-                          }
-                        >
-                          <ExternalLink className='h-4 w-4' />
-                        </Button>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card2>
+                  image={release.image}
+                  title={release.title}
+                  artist={artist.name}
+                  genre={release.genre}
+                  year={release.year}
+                  soundcloudUrl={release.soundcloudUrl}
+                  onPlay={() => {
+                    setQueue(tracks, index)
+                    playTrack(tracks[index])
+                  }}
+                />
               ))}
             </div>
           </div>

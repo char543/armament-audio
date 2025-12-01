@@ -39,7 +39,6 @@ export default function FloatingPlayer() {
     current: '0:00',
     total: '0:00',
   })
-  const [showVolumeSlider, setShowVolumeSlider] = useState(false)
 
   useEffect(() => {
     const script = document.createElement('script')
@@ -269,28 +268,18 @@ export default function FloatingPlayer() {
               variant='ghost'
               className='w-6 h-6 p-0'
               onClick={handleMuteToggle}
-              onMouseEnter={() => setShowVolumeSlider(true)}
-              onMouseLeave={() => setShowVolumeSlider(false)}
             >
               {getVolumeIcon()}
             </Button>
 
-            {showVolumeSlider && (
-              <div
-                className='flex items-center gap-2'
-                onMouseEnter={() => setShowVolumeSlider(true)}
-                onMouseLeave={() => setShowVolumeSlider(false)}
-              >
-                <input
-                  type='range'
-                  min='0'
-                  max='100'
-                  value={state.isMuted ? 0 : state.volume}
-                  onChange={handleVolumeChange}
-                  className='w-16 h-1 bg-muted rounded-lg appearance-none cursor-pointer slider'
-                />
-              </div>
-            )}
+            <input
+              type='range'
+              min='0'
+              max='100'
+              value={state.isMuted ? 0 : state.volume}
+              onChange={handleVolumeChange}
+              className='w-16 h-1 bg-muted rounded-lg appearance-none cursor-pointer slider'
+            />
           </div>
 
           <span className='text-muted-foreground'>{formattedTime.total}</span>

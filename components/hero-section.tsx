@@ -1,7 +1,40 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Play, Music } from 'lucide-react'
+import { usePlayer } from '@/contexts/player-context'
+import { getAllReleases } from '@/data/releases'
 
 export function HeroSection() {
+  const { playTrack } = usePlayer()
+  const [waveHeights, setWaveHeights] = useState<number[]>([])
+
+  useEffect(() => {
+    // Generate random heights on client side only
+    setWaveHeights(Array.from({ length: 20 }, () => Math.random() * 100 + 20))
+  }, [])
+
+  const handleListenNow = () => {
+    const releases = getAllReleases()
+    if (releases.length > 0) {
+      // Pick a random release to play
+      const randomIndex = Math.floor(Math.random() * releases.length)
+      const randomRelease = releases[randomIndex]
+
+      const track = {
+        id: randomRelease.id,
+        title: randomRelease.title,
+        artist: randomRelease.artist,
+        soundcloudUrl: randomRelease.soundcloudUrl,
+        image: randomRelease.image,
+      }
+
+      playTrack(track)
+    }
+  }
+
   return (
     <section
       id='home'
@@ -11,27 +44,18 @@ export function HeroSection() {
         {/* Animated sound wave background */}
         <div className='absolute inset-0 flex items-center justify-center opacity-20'>
           <div className='flex space-x-2'>
-            {[...Array(20)].map((_, i) => (
+            {waveHeights.map((height, i) => (
               <div
                 key={i}
                 className='sound-wave w-1 bg-primary rounded-full'
                 style={{
-                  height: `${Math.random() * 100 + 20}px`,
+                  height: `${height}px`,
                   animationDelay: `${i * 0.1}s`,
                 }}
               />
             ))}
           </div>
         </div>
-
-        {/* Vinyl record visual */}
-        {/* <div className='absolute top-20 right-20 w-32 h-32 opacity-30'>
-          <div className='w-full h-full bg-linear-to-br from-primary to-accent rounded-full relative'>
-            <div className='absolute inset-4 bg-background rounded-full'>
-              <div className='absolute inset-6 bg-primary rounded-full'></div>
-            </div>
-          </div>
-        </div> */}
       </div>
 
       {/* Content */}
@@ -60,18 +84,21 @@ export function HeroSection() {
         <div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
           <Button
             size='lg'
-            className='bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-4 text-lg rounded-xl transition-all duration-300 hover:scale-105 pulse-glow'
+            onClick={handleListenNow}
+            className='bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-4 text-lg rounded-xl transition-all duration-300 hover:scale-105 pulse-glow cursor-pointer'
           >
             <Play className='mr-2 h-5 w-5' />
             Listen Now
           </Button>
-          <Button
-            variant='outline'
-            size='lg'
-            className='border-accent text-accent hover:bg-accent hover:text-accent-foreground px-8 py-4 text-lg bg-transparent rounded-xl transition-all duration-300 hover:scale-105'
-          >
-            View Releases
-          </Button>
+          <Link href='#releases'>
+            <Button
+              variant='outline'
+              size='lg'
+              className='border-accent text-accent hover:bg-accent hover:text-white px-8 py-4 text-lg bg-transparent rounded-xl transition-all duration-300 hover:scale-105 cursor-pointer'
+            >
+              View Releases
+            </Button>
+          </Link>
         </div>
 
         <div className='mt-16 grid grid-cols-3 gap-8 max-w-md mx-auto'>

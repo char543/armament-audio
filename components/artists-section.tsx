@@ -4,7 +4,6 @@ import { Badge } from '@/components/ui/badge'
 import { artists } from '@/data/artists'
 
 export default function ArtistsSection() {
-
   return (
     <section id='artists' className='py-24 px-4'>
       <div className='max-w-7xl mx-auto'>
@@ -18,20 +17,19 @@ export default function ArtistsSection() {
           </p>
         </div>
 
-        <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
+        <div className='flex flex-wrap justify-center gap-8'>
           {artists.map((artist, index) => {
             const objectFitClass =
               artist.image === '/ARMAMENT_2.png'
                 ? 'object-contain'
                 : 'object-cover'
             return (
-              <Link
+              <Card
                 key={index}
-                href={`/artists/${artist.slug}`}
-                className='block'
+                className='group hover:scale-105 transition-all duration-300 bg-card/50 backdrop-blur-sm border-border/50 hover:border-accent/50 overflow-hidden p-0 cursor-pointer h-full w-full max-w-sm md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.334rem)]'
               >
-                <Card className='group hover:scale-105 transition-all duration-300 bg-card/50 backdrop-blur-sm border-border/50 hover:border-accent/50 overflow-hidden p-0 cursor-pointer h-full'>
-                  <CardContent className='p-0 h-full flex flex-col'>
+                <Link href={`/artists/${artist.slug}`} className='block'>
+                  <CardContent className='p-0 h-full flex flex-col min-h-[480px]'>
                     <div className='relative overflow-hidden'>
                       <img
                         src={artist.image || '/placeholder.svg'}
@@ -60,8 +58,8 @@ export default function ArtistsSection() {
                       </div>
                     </div>
                   </CardContent>
-                </Card>
-              </Link>
+                </Link>
+              </Card>
             )
           })}
         </div>
