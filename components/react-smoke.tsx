@@ -34,7 +34,7 @@ export default function SmokeBackground() {
           color: smokeColor,
           density: 20,
           enableRotation: true,
-          opacity: 0.7,
+          opacity: 0.5,
           enableWind: false,
           enableTurbulence: false,
         }}

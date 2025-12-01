@@ -55,9 +55,9 @@ export function ReleaseCard({
           <p className='text-sm text-muted-foreground mb-4'>{year}</p>
 
           <Button
-            variant='ghost'
+            variant='outline'
             size='sm'
-            className='text-muted-foreground hover:text-primary w-full cursor-pointer'
+            className='text-muted-foreground hover:text-white w-full hover:bg-blue-500 cursor-pointer'
             onClick={() => window.open(soundcloudUrl, '_blank')}
           >
             <ExternalLink className='h-4 w-4 mr-2' />
