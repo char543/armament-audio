@@ -38,7 +38,7 @@ export function HeroSection() {
   return (
     <section
       id='home'
-      className='relative min-h-screen flex items-center justify-center overflow-hidden'
+      className='pt-12 sm:pt-0 relative min-h-screen flex items-center justify-center overflow-hidden'
     >
       <div className='absolute inset-0'>
         {/* Animated sound wave background */}
