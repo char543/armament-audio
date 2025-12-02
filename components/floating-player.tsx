@@ -247,11 +247,11 @@ export default function FloatingPlayer() {
 
       <div className='mt-3 space-y-2'>
         <div
-          className='w-full bg-muted rounded-full h-1 cursor-pointer hover:h-2 transition-all'
+          className='w-full bg-muted rounded-full h-2 cursor-pointer'
           onClick={handleProgressBarClick}
         >
           <div
-            className='bg-primary h-full rounded-full transition-all duration-300'
+            className='bg-primary h-full rounded-full'
             style={{
               width: `${
                 state.duration > 0 ? (state.progress / state.duration) * 100 : 0

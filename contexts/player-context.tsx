@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import React, { createContext, useContext, useReducer, useRef } from 'react'
 
@@ -152,6 +152,16 @@ export function PlayerProvider({ children }: { children: React.ReactNode }) {
   const widgetRef = useRef<any>(null)
 
   const playTrack = (track: Track) => {
+    // Ensure queue/currentIndex are set so next/prev work even when a single
+    // track is played directly. If track exists in queue, set currentIndex
+    // accordingly; otherwise make it the single-item queue.
+    const existingIndex = state.queue.findIndex((t) => t.id === track.id)
+    if (existingIndex !== -1) {
+      dispatch({ type: 'SET_QUEUE', queue: state.queue, index: existingIndex })
+    } else {
+      dispatch({ type: 'SET_QUEUE', queue: [track], index: 0 })
+    }
+
     dispatch({ type: 'PLAY_TRACK', track })
   }
 
