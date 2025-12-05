@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { Play, Music } from 'lucide-react'
+import { Play } from 'lucide-react'
 import { usePlayer } from '@/contexts/player-context'
 import { getAllReleases } from '@/data/releases'
 
@@ -19,19 +19,16 @@ export function HeroSection() {
   const handleListenNow = () => {
     const releases = getAllReleases()
     if (releases.length > 0) {
-      // Pick a random release to play
-      const randomIndex = Math.floor(Math.random() * releases.length)
-      const randomRelease = releases[randomIndex]
+      const allTracks = releases.map((r) => ({
+        id: r.id,
+        title: r.title,
+        artist: r.artist,
+        soundcloudUrl: r.soundcloudUrl,
+        image: r.image,
+      }))
 
-      const track = {
-        id: randomRelease.id,
-        title: randomRelease.title,
-        artist: randomRelease.artist,
-        soundcloudUrl: randomRelease.soundcloudUrl,
-        image: randomRelease.image,
-      }
-
-      playTrack(track)
+      const randomIndex = Math.floor(Math.random() * allTracks.length)
+      playTrack(allTracks[randomIndex], allTracks)
     }
   }
 
@@ -61,12 +58,13 @@ export function HeroSection() {
       {/* Content */}
       <div className='relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto'>
         <div className='mb-8'>
-          {/* <Music className='h-16 w-16 text-accent mx-auto mb-6 pulse-glow' /> */}
-          <img
-            src='/ARMAMENT_2.png'
-            alt='Armament Audio Logo'
-            className=' h-64 w-64 text-accent mx-auto mb-6 pulse-glow rounded-full'
-          />
+          <div className='h-64 w-64 mx-auto mb-6 rounded-full pulse-glow'>
+            <img
+              src='/ARMAMENT_2.png'
+              alt='Armament Audio Logo'
+              className='h-full w-full rounded-full'
+            />
+          </div>
         </div>
 
         <h1 className='font-headline font-black text-4xl sm:text-6xl lg:text-8xl text-foreground mb-6 leading-tight'>

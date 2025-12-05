@@ -260,8 +260,8 @@ export function ContactSection() {
                   talented artists who share our passion for innovative music.
                 </p>
                 <p className='text-sm text-muted-foreground'>
-                  Please include links to your music, press kit, and a brief
-                  description of your artistic vision when reaching out.
+                  Please include links to your music when reaching out, plus
+                  anything else you want to share.
                 </p>
               </CardContent>
             </Card>

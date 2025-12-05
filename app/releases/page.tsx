@@ -8,7 +8,7 @@ import { getAllReleases } from '@/data/releases'
 import { Footer } from '@/components/footer'
 
 export default function ReleasesPage() {
-  const { playTrack, setQueue } = usePlayer()
+  const { playTrack } = usePlayer()
   const releases = getAllReleases()
 
   const tracks: Track[] = releases.map((release) => ({
@@ -19,9 +19,8 @@ export default function ReleasesPage() {
     image: release.image,
   }))
 
-  const handlePlayTrack = (track: Track, index: number) => {
-    setQueue(tracks, index)
-    playTrack(track)
+  const handlePlayTrack = (track: Track) => {
+    playTrack(track, tracks)
   }
 
   return (
@@ -58,7 +57,7 @@ export default function ReleasesPage() {
                 genre={release.genre}
                 year={release.year}
                 soundcloudUrl={release.soundcloudUrl}
-                onPlay={() => handlePlayTrack(tracks[index], index)}
+                onPlay={() => handlePlayTrack(tracks[index])}
               />
             ))}
           </div>

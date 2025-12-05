@@ -24,7 +24,7 @@ export default function ArtistPage({ params }: ArtistPageProps) {
   const artist = getArtistBySlug(slug)
   const artistReleases = getReleasesByArtist(slug)
 
-  const { setQueue, playTrack } = usePlayer()
+  const { playTrack } = usePlayer()
 
   const tracks: Track[] = artistReleases.map((r) => ({
     id: r.id,
@@ -155,8 +155,7 @@ export default function ArtistPage({ params }: ArtistPageProps) {
                   year={release.year}
                   soundcloudUrl={release.soundcloudUrl}
                   onPlay={() => {
-                    setQueue(tracks, index)
-                    playTrack(tracks[index])
+                    playTrack(tracks[index], tracks)
                   }}
                 />
               ))}

@@ -182,8 +182,35 @@
     animation: pulse-glow 2s ease-in-out infinite;
   }
 
+  .pulse-glow-filter {
+    animation: pulse-glow-filter 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow-filter {
+    0%,
+    100% {
+      filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.4));
+    }
+    50% {
+      filter: drop-shadow(0 0 40px rgba(59, 130, 246, 0.7));
+    }
+  }
+
   .pulse-green {
     animation: pulse-green 2s ease-in-out infinite;
+  }
+
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 8s linear infinite;
   }
 
   /* Volume slider styling */
