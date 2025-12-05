@@ -5,6 +5,7 @@ import { ReleaseCard } from '@/components/release-card'
 import { ArrowLeft } from 'lucide-react'
 import { usePlayer, type Track } from '@/contexts/player-context'
 import { getAllReleases } from '@/data/releases'
+import { Footer } from '@/components/footer'
 
 export default function ReleasesPage() {
   const { playTrack, setQueue } = usePlayer()
@@ -63,6 +64,7 @@ export default function ReleasesPage() {
           </div>
         </div>
       </section>
+      <Footer />
     </main>
   )
 }

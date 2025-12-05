@@ -20,7 +20,7 @@ export const artists: Artist[] = [
     slug: 'dizzkid',
     name: 'DiZzKiD',
     genre: 'Ambient Electronic',
-    image: '/ambient-electronic-artist.png',
+    image: '/dizzkid.avif',
     description:
       'Pioneering soundscapes that blur the line between digital and organic.',
     releases: 2,

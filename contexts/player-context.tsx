@@ -151,7 +151,7 @@ export function PlayerProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(playerReducer, initialState)
   const widgetRef = useRef<any>(null)
 
-  const playTrack = (track: Track) => {
+  const playTrack = React.useCallback((track: Track) => {
     // Ensure queue/currentIndex are set so next/prev work even when a single
     // track is played directly. If track exists in queue, set currentIndex
     // accordingly; otherwise make it the single-item queue.
@@ -163,66 +163,82 @@ export function PlayerProvider({ children }: { children: React.ReactNode }) {
     }
 
     dispatch({ type: 'PLAY_TRACK', track })
-  }
+  }, [state.queue])
 
-  const togglePlay = () => {
+  const togglePlay = React.useCallback(() => {
     dispatch({ type: 'TOGGLE_PLAY' })
-  }
+  }, [])
 
-  const nextTrack = () => {
+  const nextTrack = React.useCallback(() => {
     dispatch({ type: 'NEXT_TRACK' })
-  }
+  }, [])
 
-  const prevTrack = () => {
+  const prevTrack = React.useCallback(() => {
     dispatch({ type: 'PREV_TRACK' })
-  }
+  }, [])
 
-  const setProgress = (progress: number) => {
+  const setProgress = React.useCallback((progress: number) => {
     dispatch({ type: 'SET_PROGRESS', progress })
-  }
+  }, [])
 
-  const setDuration = (duration: number) => {
+  const setDuration = React.useCallback((duration: number) => {
     dispatch({ type: 'SET_DURATION', duration })
-  }
+  }, [])
 
-  const setVisibility = (visible: boolean) => {
+  const setVisibility = React.useCallback((visible: boolean) => {
     dispatch({ type: 'SET_VISIBILITY', visible })
-  }
+  }, [])
 
-  const setQueue = (queue: Track[], index?: number) => {
+  const setQueue = React.useCallback((queue: Track[], index?: number) => {
     dispatch({ type: 'SET_QUEUE', queue, index })
-  }
+  }, [])
 
-  const setVolume = (volume: number) => {
+  const setVolume = React.useCallback((volume: number) => {
     dispatch({ type: 'SET_VOLUME', volume })
-  }
+  }, [])
 
-  const toggleMute = () => {
+  const toggleMute = React.useCallback(() => {
     dispatch({ type: 'TOGGLE_MUTE' })
-  }
+  }, [])
 
-  const seekTo = (position: number) => {
+  const seekTo = React.useCallback((position: number) => {
     dispatch({ type: 'SEEK_TO', position })
-  }
+  }, [])
+
+  const value = React.useMemo(
+    () => ({
+      state,
+      playTrack,
+      togglePlay,
+      nextTrack,
+      prevTrack,
+      setProgress,
+      setDuration,
+      setVisibility,
+      setQueue,
+      setVolume,
+      toggleMute,
+      seekTo,
+      widgetRef,
+    }),
+    [
+      state,
+      playTrack,
+      togglePlay,
+      nextTrack,
+      prevTrack,
+      setProgress,
+      setDuration,
+      setVisibility,
+      setQueue,
+      setVolume,
+      toggleMute,
+      seekTo,
+    ]
+  )
 
   return (
-    <PlayerContext.Provider
-      value={{
-        state,
-        playTrack,
-        togglePlay,
-        nextTrack,
-        prevTrack,
-        setProgress,
-        setDuration,
-        setVisibility,
-        setQueue,
-        setVolume,
-        toggleMute,
-        seekTo,
-        widgetRef,
-      }}
-    >
+    <PlayerContext.Provider value={value}>
       {children}
     </PlayerContext.Provider>
   )
