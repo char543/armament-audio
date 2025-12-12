@@ -7,7 +7,7 @@ import { getAllReleases } from '@/data/releases'
 import { ReleaseCard } from '@/components/release-card'
 
 export function ReleasesSection() {
-  const { playTrack, setQueue } = usePlayer()
+  const { playTrack } = usePlayer()
   const allReleases = getAllReleases()
   const releases = allReleases.slice(0, 6)
 
@@ -19,9 +19,8 @@ export function ReleasesSection() {
     image: release.image,
   }))
 
-  const handlePlayTrack = (track: Track, index: number) => {
-    setQueue(tracks, index)
-    playTrack(track)
+  const handlePlayTrack = (track: Track) => {
+    playTrack(track, tracks)
   }
 
   return (
@@ -47,7 +46,7 @@ export function ReleasesSection() {
               genre={release.genre}
               year={release.year}
               soundcloudUrl={release.soundcloudUrl}
-              onPlay={() => handlePlayTrack(tracks[index], index)}
+              onPlay={() => handlePlayTrack(tracks[index])}
             />
           ))}
         </div>
